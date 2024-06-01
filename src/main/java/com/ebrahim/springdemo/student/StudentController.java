@@ -1,6 +1,7 @@
 package com.ebrahim.springdemo.student;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -10,9 +11,11 @@ import java.util.List;
 @RequestMapping("/api/v1/students")
 public class StudentController {
 
-    private StudentService studentService;
+    private final StudentService studentService;
 
-    public StudentController(StudentService studentService) {
+    public StudentController(
+         @Qualifier("DBStudentService") StudentService studentService
+    ) {
         this.studentService = studentService;
     }
 
